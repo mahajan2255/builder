@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<title>DS Public School</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+html {scroll-padding-top: 70px; scroll-behavior: smooth;}
+body {margin:0;font-family:'Inter',sans-serif;}
+.nav-btn {background:transparent;color:white;border:none;cursor:pointer;padding:8px 12px;font-size:16px;font-family:'Inter',sans-serif;}
+.nav-btn:hover {text-decoration:underline;}
+section {padding:80px 20px;}
+h1,h2,h3 {font-family:'Playfair Display',serif;}
+
+.btn {
+  padding:12px 24px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+}
+
+.primary {background:#2563eb;color:white;}
+.secondary {background:transparent;color:white;border:2px solid #fff;}
+
+.card {
+  padding:20px;
+  border-radius:16px;
+  background:#f1f5f9;
+  transition:0.3s;
+}
+.card:hover {transform:translateY(-8px);}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+</style>
+</head>
+
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+
+const {useState} = React;
+
+/* NAVBAR */
+function Navbar({setPage}) {
+  const scrollTo = (id) => {
+    setPage("home");
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
+  };
+  return (
+    <div style={{position:"fixed",top:0,left:0,width:"100%",boxSizing:"border-box",background:"#0f172a",color:"#fff",padding:"15px 30px",display:"flex",justifyContent:"space-between",alignItems:"center",zIndex:1000}}>
+      <h2 style={{margin:0,cursor:"pointer"}} onClick={()=>scrollTo("hero")}>DS Public School</h2>
+      <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
+        <button className="nav-btn" onClick={()=>scrollTo("about")}>About</button>
+        <button className="nav-btn" onClick={()=>scrollTo("programs")}>Programs</button>
+        <button className="nav-btn" onClick={()=>scrollTo("faculty")}>Faculty</button>
+        <button className="nav-btn" onClick={()=>scrollTo("contact")}>Contact</button>
+        <button className="btn primary" onClick={()=>setPage("login")}>Login</button>
+      </div>
+    </div>
+  );
+}
+
+/* HERO */
+function Hero(){
+  return (
+    <section id="hero" style={{height:"100vh",background:"#1e3a5f",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",textAlign:"center"}}>
+      <div>
+        <h1 style={{fontSize:"60px"}}>Excellence in Education</h1>
+        <p>Empowering minds, inspiring futures since 1985</p>
+        <button className="btn primary">Apply Now</button>
+      </div>
+    </section>
+  );
+}
+
+/* ABOUT */
+function About(){
+  return (
+    <section id="about">
+      <h2>Building Tomorrow’s Leaders Today</h2>
+      <p>We nurture well-rounded students for the future.</p>
+
+      <div className="grid">
+        <div className="card">38+ Years</div>
+        <div className="card">2500+ Students</div>
+        <div className="card">150+ Faculty</div>
+        <div className="card">95% Success</div>
+      </div>
+    </section>
+  );
+}
+
+/* PROGRAMS */
+function Programs(){
+  return (
+    <section id="programs">
+      <h2>Academic Programs</h2>
+      <div className="grid">
+        <div className="card">Advanced Academics</div>
+        <div className="card">STEM Excellence</div>
+        <div className="card">Arts & Culture</div>
+        <div className="card">Global Studies</div>
+      </div>
+    </section>
+  );
+}
+
+/* ACHIEVEMENTS */
+function Achievements(){
+  return (
+    <section id="achievements">
+      <h2>Awards & Achievements</h2>
+      <div className="grid">
+        <div className="card">2025 STEM Award</div>
+        <div className="card">Robotics Champion</div>
+      </div>
+    </section>
+  );
+}
+
+/* FACULTY */
+function Faculty(){
+  return (
+    <section id="faculty" style={{background:"#0f172a",color:"#fff"}}>
+      <h2>Meet Our Faculty</h2>
+      <div className="grid">
+        <div className="card">Dr. Elizabeth</div>
+        <div className="card">Prof. James</div>
+        <div className="card">Dr. Sarah</div>
+      </div>
+    </section>
+  );
+}
+
+/* EXTRACURRICULAR */
+function Extracurricular(){
+  return (
+    <section id="extracurricular">
+      <h2>Beyond Classroom</h2>
+      <div className="grid">
+        <div className="card">Sports</div>
+        <div className="card">Music</div>
+        <div className="card">Art</div>
+      </div>
+    </section>
+  );
+}
+
+/* GALLERY */
+function Gallery(){
+  return (
+    <section id="gallery">
+      <h2>Campus Life</h2>
+      <div className="grid">
+        <div className="card">Image 1</div>
+        <div className="card">Image 2</div>
+      </div>
+    </section>
+  );
+}
+
+/* TESTIMONIAL */
+function Testimonials(){
+  return (
+    <section id="testimonials" style={{background:"#1e3a5f",color:"#fff"}}>
+      <h2>Testimonials</h2>
+      <p>“Great school!”</p>
+    </section>
+  );
+}
+
+/* NEWS */
+function News(){
+  return (
+    <section id="news">
+      <h2>News & Events</h2>
+      <div className="grid">
+        <div className="card">News 1</div>
+        <div className="card">Event 1</div>
+      </div>
+    </section>
+  );
+}
+
+/* CONTACT */
+function Contact(){
+  return (
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <input placeholder="Name"/><br/>
+      <input placeholder="Email"/><br/>
+      <textarea placeholder="Message"/>
+    </section>
+  );
+}
+
+/* FOOTER */
+function Footer(){
+  return (
+    <footer style={{background:"#0f172a",color:"#fff",padding:"20px"}}>
+      © 2026 DS Public School
+    </footer>
+  );
+}
+
+/* LOGIN PAGE */
+function Login(){
+  return (
+    <div style={{height:"100vh",display:"flex",justifyContent:"center",alignItems:"center"}}>
+      <div className="card">
+        <h2>Login</h2>
+        <input placeholder="Email"/><br/>
+        <input placeholder="Password"/><br/>
+        <button className="btn primary">Login</button>
+      </div>
+    </div>
+  );
+}
+
+/* MAIN APP */
+function App(){
+  const [page,setPage] = useState("home");
+
+  return (
+    <>
+      <Navbar setPage={setPage}/>
+      {page==="home" ? (
+        <>
+          <Hero/>
+          <About/>
+          <Programs/>
+          <Achievements/>
+          <Faculty/>
+          <Extracurricular/>
+          <Gallery/>
+          <Testimonials/>
+          <News/>
+          <Contact/>
+          <Footer/>
+        </>
+      ) : (
+        <Login/>
+      )}
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+
+</script>
+</body>
+</html>
