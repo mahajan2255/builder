@@ -197,7 +197,7 @@ function NavbarSec({ props: p, onUpdate }) {
   }, []);
   return (
     <nav ref={ref}
-      style={{ background: scrolled ? "rgba(255,255,255,.96)" : "transparent", backdropFilter: scrolled ? "blur(12px)" : "none", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none", position: "sticky", top: 0, zIndex: 50, transition: "all .3s", animation: "fadeUp .6s ease" }}>
+      style={{ background: p.bgColor || (scrolled ? "rgba(255,255,255,.96)" : "transparent"), backdropFilter: scrolled ? "blur(12px)" : "none", boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,.08)" : "none", position: "sticky", top: 0, zIndex: 50, transition: "all .3s", animation: "fadeUp .6s ease" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 32px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{ width: 48, height: 48, borderRadius: "50%", background: scrolled ? "#2563eb" : "#fff", display: "flex", alignItems: "center", justifyContent: "center", transition: "background .3s", overflow: "hidden" }}>
@@ -207,7 +207,7 @@ function NavbarSec({ props: p, onUpdate }) {
             }
           </div>
           <ET value={p.schoolName} onChange={v => onUpdate({ ...p, schoolName: v })}
-            style={{ fontSize: 22, fontWeight: 700, color: scrolled ? "#1e293b" : "#fff", fontFamily: "'Playfair Display',serif", transition: "color .3s" }} />
+            style={{ fontSize: 22, fontWeight: 700, color: p.textColor || (scrolled ? "#1e293b" : "#fff"), fontFamily: "'Playfair Display',serif", transition: "color .3s" }} />
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
           {p.links.map((l, i) => (
@@ -217,7 +217,7 @@ function NavbarSec({ props: p, onUpdate }) {
                 const target = document.getElementById(`section-${id}`);
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }} className="nav-link"
-              style={{ color: scrolled ? "#475569" : "#fff", fontSize: 14, fontWeight: 500, cursor: "pointer", textDecoration: "none", fontFamily: "'Inter',sans-serif", animationDelay: `${i * 0.1}s`, animation: "fadeUp .5s ease both" }}>
+              style={{ color: p.textColor || (scrolled ? "#475569" : "#fff"), fontSize: 14, fontWeight: 500, cursor: "pointer", textDecoration: "none", fontFamily: "'Inter',sans-serif", animationDelay: `${i * 0.1}s`, animation: "fadeUp .5s ease both" }}>
               {l}
             </a>
           ))}
@@ -232,13 +232,13 @@ function NavbarSec({ props: p, onUpdate }) {
 
 function HeroSec({ props: p, onUpdate }) {
   return (
-    <section style={{ position: "relative", minHeight: 640, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: "linear-gradient(135deg,#0f172a,#1e3a5f,#1e293b)" }}>
+    <section style={{ position: "relative", minHeight: 640, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", background: p.bgColor || "linear-gradient(135deg,#0f172a,#1e3a5f,#1e293b)" }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: `url('${p.bgImage}')`, backgroundSize: "cover", backgroundPosition: "center", opacity: 0.2 }} />
       <div style={{ position: "absolute", top: 80, left: 80, width: 288, height: 288, background: "rgba(59,130,246,.28)", borderRadius: "50%", filter: "blur(64px)", animation: "orb1 8s ease-in-out infinite" }} />
       <div style={{ position: "absolute", bottom: 80, right: 80, width: 384, height: 384, background: "rgba(139,92,246,.22)", borderRadius: "50%", filter: "blur(80px)", animation: "orb2 10s ease-in-out infinite" }} />
       <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "80px 32px", maxWidth: 960 }}>
         <ET tag="h1" value={p.headline} onChange={v => onUpdate({ ...p, headline: v })}
-          style={{ fontSize: 78, fontWeight: 700, color: "#fff", lineHeight: 1.05, letterSpacing: "-2px", fontFamily: "'Playfair Display',serif", margin: "0 0 22px", display: "block", animation: "fadeUp .8s .2s ease both", opacity: 0, animationFillMode: "forwards" }} />
+          style={{ fontSize: 78, fontWeight: 700, color: p.textColor || "#fff", lineHeight: 1.05, letterSpacing: "-2px", fontFamily: "'Playfair Display',serif", margin: "0 0 22px", display: "block", animation: "fadeUp .8s .2s ease both", opacity: 0, animationFillMode: "forwards" }} />
         <ET tag="p" value={p.tagline} onChange={v => onUpdate({ ...p, tagline: v })}
           style={{ fontSize: 22, color: "#bfdbfe", margin: "0 0 14px", fontFamily: "'Inter',sans-serif", display: "block", animation: "fadeUp .8s .4s ease both", opacity: 0, animationFillMode: "forwards" }} />
         <ET tag="p" value={p.description} onChange={v => onUpdate({ ...p, description: v })}
@@ -263,12 +263,12 @@ function HeroSec({ props: p, onUpdate }) {
 }
 function AboutSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "#fff" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "#fff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center", marginBottom: 80 }}>
           <AnimBox type="left">
             <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-              style={{ fontSize: 46, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 24px", lineHeight: 1.1, letterSpacing: "-1px", display: "block" }} />
+              style={{ fontSize: 46, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 24px", lineHeight: 1.1, letterSpacing: "-1px", display: "block" }} />
             <ET tag="p" value={p.para1} onChange={v => onUpdate({ ...p, para1: v })}
               style={{ fontSize: 17, color: "#475569", lineHeight: 1.8, margin: "0 0 18px", fontFamily: "'Inter',sans-serif", display: "block" }} />
             <ET tag="p" value={p.para2} onChange={v => onUpdate({ ...p, para2: v })}
@@ -290,7 +290,7 @@ function AboutSec({ props: p, onUpdate }) {
               <div key={i} className="card-hover" style={{ textAlign: "center", padding: "24px 16px", borderRadius: 16, background: "linear-gradient(135deg,#eff6ff,#f5f3ff)", cursor: "default" }}>
                 <Icon style={{ width: 40, height: 40, color: "#2563eb", margin: "0 auto 14px", display: "block" }} />
                 <ET tag="div" value={s.v} onChange={v => { const n = [...p.stats]; n[i] = { ...n[i], v }; onUpdate({ ...p, stats: n }); }}
-                  style={{ fontSize: 36, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", display: "block" }} />
+                  style={{ fontSize: 36, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", display: "block" }} />
                 <ET tag="div" value={s.l} onChange={v => { const n = [...p.stats]; n[i] = { ...n[i], l: v }; onUpdate({ ...p, stats: n }); }}
                   style={{ fontSize: 14, color: "#475569", marginTop: 6, fontFamily: "'Inter',sans-serif", display: "block" }} />
               </div>
@@ -304,11 +304,11 @@ function AboutSec({ props: p, onUpdate }) {
 
 function ProgramsSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "linear-gradient(135deg,#f8fafc,#eff6ff)" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "linear-gradient(135deg,#f8fafc,#eff6ff)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 48, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
+            style={{ fontSize: 48, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -322,7 +322,7 @@ function ProgramsSec({ props: p, onUpdate }) {
                     <Icon style={{ width: 32, height: 32, color: "#fff" }} />
                   </div>
                   <ET tag="h3" value={prog.title} onChange={v => { const n = [...p.programs]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, programs: n }); }}
-                    style={{ fontSize: 22, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 12px", display: "block" }} />
+                    style={{ fontSize: 22, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 12px", display: "block" }} />
                   <ET tag="p" value={prog.desc} onChange={v => { const n = [...p.programs]; n[i] = { ...n[i], desc: v }; onUpdate({ ...p, programs: n }); }}
                     style={{ fontSize: 14, color: "#64748b", lineHeight: 1.7, fontFamily: "'Inter',sans-serif", margin: 0 }} />
                 </div>
@@ -337,11 +337,11 @@ function ProgramsSec({ props: p, onUpdate }) {
 
 function AchievementsSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "#fff", overflow: "hidden" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "#fff", overflow: "hidden" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 80 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 52, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
+            style={{ fontSize: 52, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -358,7 +358,7 @@ function AchievementsSec({ props: p, onUpdate }) {
                       <ET value={a.year} onChange={v => { const n = [...p.items]; n[i] = { ...n[i], year: v }; onUpdate({ ...p, items: n }); }} style={{ color: "#fff" }} />
                     </span>
                     <ET tag="h3" value={a.title} onChange={v => { const n = [...p.items]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, items: n }); }}
-                      style={{ fontSize: 24, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 12px", display: "block" }} />
+                      style={{ fontSize: 24, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 12px", display: "block" }} />
                     <ET tag="p" value={a.desc} onChange={v => { const n = [...p.items]; n[i] = { ...n[i], desc: v }; onUpdate({ ...p, items: n }); }}
                       style={{ color: "#64748b", lineHeight: 1.7, fontFamily: "'Inter',sans-serif", margin: 0 }} />
                   </div>
@@ -382,11 +382,11 @@ function AchievementsSec({ props: p, onUpdate }) {
 
 function AdmissionsSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "#fff" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "#fff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 48, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
+            style={{ fontSize: 48, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -402,7 +402,7 @@ function AdmissionsSec({ props: p, onUpdate }) {
                     <Icon style={{ width: 26, height: 26, color: "#fff" }} />
                   </div>
                   <ET tag="h3" value={step.title} onChange={v => { const n = [...p.steps]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, steps: n }); }}
-                    style={{ fontSize: 18, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 10px", display: "block" }} />
+                    style={{ fontSize: 18, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 10px", display: "block" }} />
                   <ET tag="p" value={step.desc} onChange={v => { const n = [...p.steps]; n[i] = { ...n[i], desc: v }; onUpdate({ ...p, steps: n }); }}
                     style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65, fontFamily: "'Inter',sans-serif", margin: 0 }} />
                 </div>
@@ -425,12 +425,12 @@ function AdmissionsSec({ props: p, onUpdate }) {
 }
 function FacultySec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "linear-gradient(135deg,#0f172a,#1e3a5f,#312e81)", position: "relative", overflow: "hidden" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "linear-gradient(135deg,#0f172a,#1e3a5f,#312e81)", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, opacity: .05, backgroundImage: "radial-gradient(circle at 2px 2px,white 1px,transparent 0)", backgroundSize: "50px 50px" }} />
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 52, fontWeight: 700, color: "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
+            style={{ fontSize: 52, fontWeight: 700, color: p.textColor || "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#93c5fd", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -444,7 +444,7 @@ function FacultySec({ props: p, onUpdate }) {
                 </div>
                 <div style={{ padding: "20px 24px" }}>
                   <ET tag="h3" value={m.name} onChange={v => { const n = [...p.members]; n[i] = { ...n[i], name: v }; onUpdate({ ...p, members: n }); }}
-                    style={{ fontSize: 19, fontWeight: 700, color: "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 4px", display: "block" }} />
+                    style={{ fontSize: 19, fontWeight: 700, color: p.textColor || "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 4px", display: "block" }} />
                   <ET tag="p" value={m.role} onChange={v => { const n = [...p.members]; n[i] = { ...n[i], role: v }; onUpdate({ ...p, members: n }); }}
                     style={{ color: "#60a5fa", fontSize: 14, fontWeight: 600, fontFamily: "'Inter',sans-serif", margin: "0 0 2px" }} />
                   <ET tag="p" value={m.dept} onChange={v => { const n = [...p.members]; n[i] = { ...n[i], dept: v }; onUpdate({ ...p, members: n }); }}
@@ -463,14 +463,14 @@ function FacultySec({ props: p, onUpdate }) {
 
 function NewsEventsSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "#fff" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "#fff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* News */}
         <div style={{ marginBottom: 80 }}>
           <AnimBox type="up" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
             <div>
               <ET tag="h2" value={p.newsHeading} onChange={v => onUpdate({ ...p, newsHeading: v })}
-                style={{ fontSize: 52, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 8px", letterSpacing: "-1.5px", display: "block" }} />
+                style={{ fontSize: 52, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 8px", letterSpacing: "-1.5px", display: "block" }} />
               <ET tag="p" value={p.newsSubtext} onChange={v => onUpdate({ ...p, newsSubtext: v })}
                 style={{ fontSize: 17, color: "#64748b", fontFamily: "'Inter',sans-serif", margin: 0 }} />
             </div>
@@ -494,7 +494,7 @@ function NewsEventsSec({ props: p, onUpdate }) {
                       <ET value={item.date} onChange={v => { const n = [...p.news]; n[i] = { ...n[i], date: v }; onUpdate({ ...p, news: n }); }} />
                     </div>
                     <ET tag="h3" value={item.title} onChange={v => { const n = [...p.news]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, news: n }); }}
-                      style={{ fontSize: 18, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 10px", display: "block", lineHeight: 1.35 }} />
+                      style={{ fontSize: 18, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 10px", display: "block", lineHeight: 1.35 }} />
                     <ET tag="p" value={item.excerpt} onChange={v => { const n = [...p.news]; n[i] = { ...n[i], excerpt: v }; onUpdate({ ...p, news: n }); }}
                       style={{ fontSize: 13, color: "#64748b", lineHeight: 1.65, margin: 0, fontFamily: "'Inter',sans-serif" }} />
                   </div>
@@ -508,7 +508,7 @@ function NewsEventsSec({ props: p, onUpdate }) {
           <AnimBox type="up" style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 48 }}>
             <div>
               <ET tag="h2" value={p.eventsHeading} onChange={v => onUpdate({ ...p, eventsHeading: v })}
-                style={{ fontSize: 52, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 8px", letterSpacing: "-1.5px", display: "block" }} />
+                style={{ fontSize: 52, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 8px", letterSpacing: "-1.5px", display: "block" }} />
               <ET tag="p" value={p.eventsSubtext} onChange={v => onUpdate({ ...p, eventsSubtext: v })}
                 style={{ fontSize: 17, color: "#64748b", fontFamily: "'Inter',sans-serif", margin: 0 }} />
             </div>
@@ -522,7 +522,7 @@ function NewsEventsSec({ props: p, onUpdate }) {
                     <ET value={ev.date} onChange={v => { const n = [...p.events]; n[i] = { ...n[i], date: v }; onUpdate({ ...p, events: n }); }} style={{ color: "#fff" }} />
                   </span>
                   <ET tag="h3" value={ev.title} onChange={v => { const n = [...p.events]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, events: n }); }}
-                    style={{ fontSize: 20, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", display: "block" }} />
+                    style={{ fontSize: 20, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", display: "block" }} />
                   <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 14, color: "#475569", fontFamily: "'Inter',sans-serif" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}><Clock size={18} style={{ color: "#2563eb" }} /><ET value={ev.time} onChange={v => { const n = [...p.events]; n[i] = { ...n[i], time: v }; onUpdate({ ...p, events: n }); }} /></div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}><MapPin size={18} style={{ color: "#2563eb" }} /><ET value={ev.location} onChange={v => { const n = [...p.events]; n[i] = { ...n[i], location: v }; onUpdate({ ...p, events: n }); }} /></div>
@@ -538,11 +538,11 @@ function NewsEventsSec({ props: p, onUpdate }) {
 }
 function GallerySec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "#fff" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "#fff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 48, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
+            style={{ fontSize: 48, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -557,7 +557,7 @@ function GallerySec({ props: p, onUpdate }) {
                 onMouseLeave={e => e.currentTarget.style.opacity = 0}>
                 <div style={{ position: "absolute", bottom: 16, left: 16 }}>
                   <ET tag="h3" value={img.title} onChange={v => { const n = [...p.images]; n[i] = { ...n[i], title: v }; onUpdate({ ...p, images: n }); }}
-                    style={{ color: "#fff", fontSize: 22, fontWeight: 700, fontFamily: "'Playfair Display',serif", margin: 0, display: "block" }} />
+                    style={{ color: p.textColor || "#fff", fontSize: 22, fontWeight: 700, fontFamily: "'Playfair Display',serif", margin: 0, display: "block" }} />
                 </div>
               </div>
             </AnimBox>
@@ -570,11 +570,11 @@ function GallerySec({ props: p, onUpdate }) {
 
 function ExtracurricularSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "linear-gradient(135deg,#f8fafc,#fff,#eff6ff)" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "linear-gradient(135deg,#f8fafc,#fff,#eff6ff)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 52, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
+            style={{ fontSize: 52, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1.5px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 720, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -588,7 +588,7 @@ function ExtracurricularSec({ props: p, onUpdate }) {
                     <Icon style={{ width: 32, height: 32, color: "#fff" }} />
                   </div>
                   <ET tag="h3" value={act.category} onChange={v => { const n = [...p.activities]; n[i] = { ...n[i], category: v }; onUpdate({ ...p, activities: n }); }}
-                    style={{ fontSize: 18, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", display: "block" }} />
+                    style={{ fontSize: 18, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", display: "block" }} />
                   <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                     {act.clubs.map((club, ci) => (
                       <li key={ci} style={{ display: "flex", alignItems: "center", gap: 8, color: "#475569", fontSize: 13, fontFamily: "'Inter',sans-serif" }}>
@@ -617,12 +617,12 @@ function ExtracurricularSec({ props: p, onUpdate }) {
 
 function TestimonialsSec({ props: p, onUpdate }) {
   return (
-    <section style={{ padding: "96px 32px", background: "linear-gradient(135deg,#1e3a5f,#0f172a,#312e81)", position: "relative", overflow: "hidden" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "linear-gradient(135deg,#1e3a5f,#0f172a,#312e81)", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, opacity: .1, backgroundImage: "radial-gradient(circle at 2px 2px,white 1px,transparent 0)", backgroundSize: "40px 40px" }} />
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 48, fontWeight: 700, color: "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
+            style={{ fontSize: 48, fontWeight: 700, color: p.textColor || "#fff", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#93c5fd", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
@@ -655,20 +655,20 @@ function TestimonialsSec({ props: p, onUpdate }) {
 }
 
 function ContactSec({ props: p, onUpdate }) {
-  const inp = { background: "#f8fafc", border: "1.5px solid #e2e8f0", borderRadius: 10, padding: "12px 14px", fontSize: 14, width: "100%", outline: "none", boxSizing: "border-box", fontFamily: "'Inter',sans-serif", color: "#1e293b" };
+  const inp = { background: p.bgColor || "#f8fafc", border: "1.5px solid #e2e8f0", borderRadius: 10, padding: "12px 14px", fontSize: 14, width: "100%", outline: "none", boxSizing: "border-box", fontFamily: "'Inter',sans-serif", color: "#1e293b" };
   const rows = [{ icon: MapPin, title: "Address", key: "address" }, { icon: Phone, title: "Phone", key: "phone" }, { icon: Mail, title: "Email", key: "email" }, { icon: Clock, title: "Office Hours", key: "hours" }];
   return (
-    <section style={{ padding: "96px 32px", background: "linear-gradient(135deg,#f8fafc,#eff6ff)" }}>
+    <section style={{ padding: "96px 32px", background: p.bgColor || "linear-gradient(135deg,#f8fafc,#eff6ff)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <AnimBox type="up" style={{ textAlign: "center", marginBottom: 60 }}>
           <ET tag="h2" value={p.heading} onChange={v => onUpdate({ ...p, heading: v })}
-            style={{ fontSize: 48, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
+            style={{ fontSize: 48, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 14px", letterSpacing: "-1px" }} />
           <ET tag="p" value={p.subtext} onChange={v => onUpdate({ ...p, subtext: v })}
             style={{ fontSize: 19, color: "#64748b", maxWidth: 600, margin: "0 auto", fontFamily: "'Inter',sans-serif" }} />
         </AnimBox>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }}>
           <AnimBox type="left">
-            <h3 style={{ fontSize: 28, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 28px" }}>Contact Information</h3>
+            <h3 style={{ fontSize: 28, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 28px" }}>Contact Information</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 28 }}>
               {rows.map(({ icon: Icon, title, key }, idx) => (
                 <div key={key} style={{ display: "flex", alignItems: "flex-start", gap: 16, padding: "16px", borderRadius: 16, background: "rgba(255,255,255,.7)", transition: "background .2s" }}
@@ -689,7 +689,7 @@ function ContactSec({ props: p, onUpdate }) {
             </div>
           </AnimBox>
           <AnimBox type="right" style={{ background: "#fff", borderRadius: 20, padding: 32, boxShadow: "0 8px 32px rgba(0,0,0,.08)" }}>
-            <h3 style={{ fontSize: 28, fontWeight: 700, color: "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 24px" }}>Send us a Message</h3>
+            <h3 style={{ fontSize: 28, fontWeight: 700, color: p.textColor || "#0f172a", fontFamily: "'Playfair Display',serif", margin: "0 0 24px" }}>Send us a Message</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
                 <div><label style={{ display: "block", fontSize: 13, fontWeight: 500, color: "#475569", marginBottom: 6, fontFamily: "'Inter',sans-serif" }}>First Name</label><input placeholder="John" style={inp} /></div>
@@ -710,15 +710,15 @@ function ContactSec({ props: p, onUpdate }) {
 function FooterSec({ props: p, onUpdate }) {
   const cols = { "Quick Links": ["About Us","Academics","Admissions","Campus Life","Contact"], "Resources": ["Student Portal","Parent Portal","Faculty Portal","Alumni Network","Career Center"], "Information": ["Academic Calendar","School Policies","News & Events","Employment","Privacy Policy"] };
   return (
-    <footer style={{ background: "linear-gradient(135deg,#0f172a,#1e3a5f,#0f172a)", padding: "64px 32px 24px" }}>
+    <footer style={{ background: p.bgColor || "linear-gradient(135deg,#0f172a,#1e3a5f,#0f172a)", padding: "64px 32px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 48, marginBottom: 48 }}>
           <AnimBox type="up">
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
               <div style={{ width: 48, height: 48, borderRadius: "50%", background: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontSize: 22, fontWeight: 700, color: "#fff", fontFamily: "'Playfair Display',serif" }}>P</span>
+                <span style={{ fontSize: 22, fontWeight: 700, color: p.textColor || "#fff", fontFamily: "'Playfair Display',serif" }}>P</span>
               </div>
-              <ET tag="span" value={p.schoolName} onChange={v => onUpdate({ ...p, schoolName: v })} style={{ fontSize: 20, fontWeight: 700, color: "#fff", fontFamily: "'Playfair Display',serif" }} />
+              <ET tag="span" value={p.schoolName} onChange={v => onUpdate({ ...p, schoolName: v })} style={{ fontSize: 20, fontWeight: 700, color: p.textColor || "#fff", fontFamily: "'Playfair Display',serif" }} />
             </div>
             <ET tag="p" value={p.desc} onChange={v => onUpdate({ ...p, desc: v })} style={{ color: "#93c5fd", fontSize: 14, lineHeight: 1.75, margin: "0 0 22px", fontFamily: "'Inter',sans-serif", display: "block" }} />
             <div style={{ display: "flex", gap: 10 }}>
@@ -731,7 +731,7 @@ function FooterSec({ props: p, onUpdate }) {
           </AnimBox>
           {Object.entries(cols).map(([title, items], si) => (
             <AnimBox key={title} type="up" delay={si * 0.1}>
-              <h4 style={{ color: "#fff", fontWeight: 700, fontSize: 16, fontFamily: "'Playfair Display',serif", margin: "0 0 18px" }}>{title}</h4>
+              <h4 style={{ color: p.textColor || "#fff", fontWeight: 700, fontSize: 16, fontFamily: "'Playfair Display',serif", margin: "0 0 18px" }}>{title}</h4>
               {items.map(l => (
                 <a key={l} href="#" className="footer-link" style={{ display: "block", color: "#93c5fd", fontSize: 14, textDecoration: "none", fontFamily: "'Inter',sans-serif", marginBottom: 10, transition: "color .2s" }}>{l}</a>
               ))}
@@ -777,7 +777,7 @@ function SectionWrap({ section, selected, onSelect, onUpdate, onDelete, index, r
   const Comp = RENDERERS[section.type];
   if (!Comp) return null;
   return (
-    <div onClick={e => { e.stopPropagation(); onSelect(section.id); }}
+    <div id={`sec-${section.id}`} onClick={e => { e.stopPropagation(); onSelect(section.id); }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       draggable={dragEnabled}
       onDragStart={e => e.dataTransfer.setData("text/plain", index)}
@@ -882,6 +882,18 @@ function CMSPanel({ sections, onUpdateSections }) {
   );
 }
 
+function ColorPicker({ label, value, onChange }) {
+  return (
+    <div style={{ display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:8 }}>
+      <div style={{ color:"#4b5563",fontSize:11,fontWeight:500 }}>{label}</div>
+      <div style={{ display:"flex",alignItems:"center",gap:6,background:"#161620",border:"1px solid #1e1e2a",padding:"2px 6px",borderRadius:6 }}>
+        <input type="color" value={value||"#ffffff"} onChange={e=>onChange(e.target.value)} style={{ width:20,height:20,padding:0,border:"none",background:"transparent",cursor:"pointer" }} />
+        <input value={value||""} placeholder="default" onChange={e=>onChange(e.target.value)} style={{ width:55,background:"transparent",border:"none",color:"#e2e8f0",fontSize:10,outline:"none",fontFamily:"monospace" }} />
+      </div>
+    </div>
+  );
+}
+
 /* ─── RIGHT PANEL ───────────────────────────────────────────────── */
 function RightPanel({ section, onUpdate }) {
   if (!section) return (
@@ -911,6 +923,12 @@ function RightPanel({ section, onUpdate }) {
         {section.type==="newevents"&&<><PG label="NEWS"><TP label="Heading" value={p.newsHeading} onChange={v=>u({...p,newsHeading:v})} /><TP label="Subtext" value={p.newsSubtext} onChange={v=>u({...p,newsSubtext:v})} /></PG><PG label="EVENTS"><TP label="Heading" value={p.eventsHeading} onChange={v=>u({...p,eventsHeading:v})} /><TP label="Subtext" value={p.eventsSubtext} onChange={v=>u({...p,eventsSubtext:v})} /></PG><div style={{ color:"#334155",fontSize:11 }}>Manage items in the CMS tab →</div></>}
         {section.type==="contact"&&<><PG label="HEADING"><TP label="Title" value={p.heading} onChange={v=>u({...p,heading:v})} /><TP label="Subtext" value={p.subtext} onChange={v=>u({...p,subtext:v})} /></PG><PG label="CONTACT INFO"><TP label="Address" value={p.address} onChange={v=>u({...p,address:v})} /><TP label="Phone" value={p.phone} onChange={v=>u({...p,phone:v})} /><TP label="Email" value={p.email} onChange={v=>u({...p,email:v})} /><TP label="Hours" value={p.hours} onChange={v=>u({...p,hours:v})} /></PG></>}
         {section.type==="footer"&&<PG label="SCHOOL INFO"><TP label="School Name" value={p.schoolName} onChange={v=>u({...p,schoolName:v})} /><TP label="Description" value={p.desc} onChange={v=>u({...p,desc:v})} /><TP label="Address" value={p.address} onChange={v=>u({...p,address:v})} /><TP label="Phone" value={p.phone} onChange={v=>u({...p,phone:v})} /><TP label="Email" value={p.email} onChange={v=>u({...p,email:v})} /></PG>}
+        
+        <PG label="DESIGN">
+          <ColorPicker label="Background" value={p.bgColor} onChange={v=>u({...p,bgColor:v})} />
+          <ColorPicker label="Text Color" value={p.textColor} onChange={v=>u({...p,textColor:v})} />
+        </PG>
+
         <div style={{ marginTop:16,paddingTop:16,borderTop:"1px solid #1a1a22" }}>
           <button onClick={()=>onUpdate(section.id,null)} style={{ background:"rgba(127,29,29,.1)",color:"#f87171",border:"1px solid rgba(127,29,29,.27)",width:"100%",padding:"8px",borderRadius:6,fontSize:11,cursor:"pointer",fontWeight:600 }}>🗑 Remove Section</button>
         </div>
@@ -934,23 +952,28 @@ function LeftPanel({ sections, selectedId, leftTab, setLeftTab, onAddSection, on
         {leftTab==="components"&&<>
           <div style={{ color:"#1e2a3a",fontSize:9,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:8 }}>DS Public School</div>
           <div style={{ display:"flex",flexDirection:"column",gap:5 }}>
-            {Object.entries(META).map(([type,info])=>(
-              <button key={type} onClick={()=>onAddSection(type)}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor="#2563eb";e.currentTarget.style.background="#1e2a3e";}}
+            {Object.entries(META).map(([type,info])=>{
+              const exists = sections.find(s=>s.type===type);
+              return (
+              <button key={type} onClick={()=>{
+                  if(exists){ onSelectSection(exists.id); setTimeout(()=>document.getElementById(`sec-${exists.id}`)?.scrollIntoView({behavior:"smooth",block:"center"}),50); }
+                  else { onAddSection(type); }
+                }}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor=exists?"#10b981":"#2563eb";e.currentTarget.style.background="#1e2a3e";}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor="#1a1a22";e.currentTarget.style.background="#161620";}}
                 style={{ background:"#161620",border:"1px solid #1a1a22",color:"#8892a4",padding:"9px 10px",borderRadius:7,cursor:"pointer",display:"flex",alignItems:"center",gap:9,textAlign:"left",transition:"all .12s" }}>
-                <span style={{ fontSize:16 }}>{info.icon}</span>
-                <div><div style={{ fontSize:11,fontWeight:600,color:"#c4c4d4" }}>{info.label}</div><div style={{ fontSize:10,color:"#334155" }}>{info.desc}</div></div>
-                <span style={{ marginLeft:"auto",color:"#2563eb",fontSize:14,fontWeight:700 }}>+</span>
+                <span style={{ fontSize:16,filter:exists?"grayscale(1) opacity(.6)":"none" }}>{info.icon}</span>
+                <div style={{ opacity:exists?0.6:1 }}><div style={{ fontSize:11,fontWeight:600,color:"#c4c4d4" }}>{info.label}</div><div style={{ fontSize:10,color:"#334155" }}>{info.desc}</div></div>
+                <span style={{ marginLeft:"auto",color:exists?"#10b981":"#2563eb",fontSize:exists?12:14,fontWeight:700 }}>{exists?"✓":"+"}</span>
               </button>
-            ))}
+            )})}
           </div>
         </>}
         {leftTab==="layers"&&<>
           <div style={{ color:"#1e2a3a",fontSize:9,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:8 }}>Page Layers</div>
           <div style={{ display:"flex",flexDirection:"column",gap:3 }}>
             {sections.map((s,i)=>(
-              <div key={s.id} onClick={()=>onSelectSection(s.id)} style={{ background:selectedId===s.id?"#1e2a3e":"#161620",border:`1px solid ${selectedId===s.id?"rgba(37,99,235,.2)":"#1a1a22"}`,color:selectedId===s.id?"#60a5fa":"#64748b",padding:"7px 10px",borderRadius:6,cursor:"pointer",display:"flex",alignItems:"center",gap:7,fontSize:11 }}>
+              <div key={s.id} onClick={()=>{onSelectSection(s.id); setTimeout(()=>document.getElementById(`sec-${s.id}`)?.scrollIntoView({behavior:"smooth",block:"center"}),50);}} style={{ background:selectedId===s.id?"#1e2a3e":"#161620",border:`1px solid ${selectedId===s.id?"rgba(37,99,235,.2)":"#1a1a22"}`,color:selectedId===s.id?"#60a5fa":"#64748b",padding:"7px 10px",borderRadius:6,cursor:"pointer",display:"flex",alignItems:"center",gap:7,fontSize:11 }}>
                 <span style={{ fontSize:12 }}>{META[s.type]?.icon}</span>
                 <span>{META[s.type]?.label}</span>
                 <span style={{ marginLeft:"auto",color:"#1e2a3a",fontSize:9,fontWeight:600 }}>#{i+1}</span>
@@ -1004,7 +1027,7 @@ export default function SchoolBuilder() {
     const npages = {...pages, [activePage]: n}; 
     setPages(npages); pushHist(npages, activePage);
   };
-  const addSection = type => { const sec={id:uid(),type,props:{...NEW_DEF[type]}}; const n=[...sections,sec]; setSelectedId(sec.id); const npages={...pages,[activePage]:n}; setPages(npages); pushHist(npages, activePage); };
+  const addSection = type => { const sec={id:uid(),type,props:{...NEW_DEF[type]}}; const n=[...sections,sec]; setSelectedId(sec.id); const npages={...pages,[activePage]:n}; setPages(npages); pushHist(npages, activePage); setTimeout(()=>document.getElementById(`sec-${sec.id}`)?.scrollIntoView({behavior:"smooth",block:"center"}),100); };
   const reorderSection = (from, to) => {
     if(from===to || isNaN(from) || isNaN(to)) return;
     const n=[...sections]; const [rm]=n.splice(from,1); n.splice(to,0,rm);
